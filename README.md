@@ -1,6 +1,6 @@
-# SynthECG
+# SynthECG ![status](https://img.shields.io/badge/status-in_progress-yellow)
 
-![status](https://img.shields.io/badge/status-in_progress-yellow) **Under Construction**
+🚧 **Under Construction**
 
 This project is in active development. The README and codebase are still being refactored.
 
