@@ -37,7 +37,12 @@ You should now be ready to go!
 
 ### Windows/Docker Setup
 
-Setting up on Windows or other non-Linux systems requires Docker with GPU support after which you can set up as in the Linux set up.
+Setting up on Windows or other non-Linux systems requires Docker with GPU support. 
+
+**📋 [Docker Setup Guide](.devcontainer/README.md)**
+
+After setting up Docker, follow the Linux setup steps above.
+
 
 ## Features
 
