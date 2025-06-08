@@ -1,28 +1,29 @@
 {
-	"name": "SynthECG CUDA Environment",
-	"image": "nvidia/cuda:12.4.0-runtime-ubuntu22.04",
-	"features": {
-		"ghcr.io/devcontainers/features/python:1": {
-			"version": "3.11"
-		}
-	},
-	"runArgs": [
-		"--gpus", "all"
-	],
-	"postCreateCommand": "apt-get update && apt-get install -y gcc-11 g++-11 build-essential && pip install --upgrade pip",
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"github.copilot",
-				"github.copilot-chat",
-				"ms-python.debugpy",
-				"ms-python.python",
-				"ms-python.vscode-pylance"
-			]
-		}
-	},
-	"workspaceFolder": "/root/SynthECG",
-	"mounts": [
-		"source=${localWorkspaceFolder},target=/root/SynthECG,type=bind"
-	]
+    "name": "SynthECG CUDA Environment",
+    "image": "nvidia/cuda:12.4.0-runtime-ubuntu22.04",
+    "features": {
+        "ghcr.io/devcontainers/features/python:1": {
+            "version": "3.11"
+        }
+    },
+    "runArgs": [
+        "--gpus", "all"
+    ],
+    "postCreateCommand": "apt-get update && apt-get install --allow-change-held-packages -y gcc-11 g++-11 build-essential cuda-toolkit-12-4 libcublas-12-4=12.4.5.8-1 libcublas-dev-12-4=12.4.5.8-1 && pip install --upgrade pip && pip install torch==2.4.1 torchvision==0.19.1+cu124 torchaudio==2.4.1+cu124 --index-url https://download.pytorch.org/whl/cu124",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "github.copilot",
+                "github.copilot-chat",
+                "ms-python.debugpy",
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "ms-toolsai.jupyter"
+            ]
+        }
+    },
+    "workspaceFolder": "/root/SynthECG",
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/root/SynthECG,type=bind"
+    ]
 }

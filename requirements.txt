@@ -1,0 +1,76 @@
+# Core data science and machine learning
+numpy==1.26.0
+numba==0.60.0
+pandas==2.2.2
+matplotlib==3.9.2
+scikit-learn==1.5.2
+scipy==1.13.1
+cupy-cuda12x==13.4.1
+# torch, torchvision, torchaudio will be installed in devcontainer.json
+torchinfo==1.8.0
+pytorch-lightning==2.4.0
+pytorch-lightning-bolts==0.3.2.post1
+tensorly==0.9.0
+einops==0.8.0
+torchmetrics==1.5.2
+iterative-stratification==0.1.9
+dtaidistance==2.3.13
+jax==0.5.1
+jaxlib==0.5.1
+fastai==1.0.61
+# fairseq (working version python 3.11) necessary for DSAT-ECG
+hydra-core==1.3.2
+omegaconf==2.3.0
+git+https://github.com/liyaodev/fairseq.git
+
+# Experiment tracking and visualization
+wandb==0.19.6
+
+# Jupyter and development environment
+jupyter==1.0.0
+ipython==7.34.0
+
+# Image processing
+pillow==11.0.0
+scikit-image==0.24.0
+
+# Signal processing
+soundfile==0.12.1
+resampy==0.4.3
+ishneholterlib==2020.5.29
+wfdb==4.1.2
+
+# Data handling and utilities
+h5py==3.12.1
+networkx==3.2.1
+tqdm==4.67.0
+pyyaml==6.0.2
+joblib==1.4.2
+
+# Specialized calculations
+pykeops==2.2.3
+keopscore==2.2.3
+sympy==1.13.1
+
+# HTTP and API
+requests==2.32.3
+aiohttp==3.10.10
+
+# Testing
+pytest==8.3.3
+
+# Additional dependencies from working environment
+bitarray==3.3.1
+beautifulsoup4==4.13.4
+bottleneck==1.4.2
+cython==3.0.12
+fastprogress==1.0.3
+fastrlock==0.8.3
+lxml==5.3.2
+nvidia-ml-py3==7.352.0
+packaging==24.2
+portalocker==3.1.1
+pybind11==2.13.6
+regex==2024.11.6
+sacrebleu==2.5.1
+tabulate==0.9.0
