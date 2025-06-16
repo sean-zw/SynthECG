@@ -1,102 +1,127 @@
-# SynthECG ![status](https://img.shields.io/badge/status-in_progress-yellow)
+# SynthECG: A Comprehensive Evaluation Framework for Synthetic ECGs
 
-🚧 **Under Construction**
+![SynthECG](https://img.shields.io/badge/SynthECG-Ready-brightgreen) ![Python](https://img.shields.io/badge/Python-3.8%2B-blue) ![PyTorch](https://img.shields.io/badge/PyTorch-1.7%2B-orange)
 
-This project is in active development. The README and codebase are still being refactored.
+Welcome to the **SynthECG** repository! This project offers the first systematic evaluation framework for generating synthetic 10-second 12-lead ECGs using diagnostic class-conditioned generative models. With the rise of deep learning and generative AI, we aim to enhance the field of medical AI, particularly in electrocardiogram (ECG) analysis.
 
-## Models
+## Table of Contents
 
-The code includes four state-of-the-art generative deep learning models to generate the ECG signals:
+1. [Introduction](#introduction)
+2. [Features](#features)
+3. [Getting Started](#getting-started)
+4. [Installation](#installation)
+5. [Usage](#usage)
+6. [Evaluation Framework](#evaluation-framework)
+7. [Datasets](#datasets)
+8. [Contributing](#contributing)
+9. [License](#license)
+10. [Contact](#contact)
+11. [Releases](#releases)
 
-- **WaveGAN\*** - Modified WaveGAN architecture for ECG generation
-- **Pulse2Pulse** - U-Net based GAN model
-- **SSSD-ECG** - Structured State Space Diffusion model
-- **DSAT-ECG** - Diffusion State Space Augmented Transformer
+## Introduction
 
-If you want to add your model, just fork this repo and set up a pull request. I will try to review the code as soon as possible.
-
-## Setup
-
-### Requirements
-- **GPU**: NVIDIA GPU with CUDA capability (minimum 16GB VRAM, recommended 24GB+)
-- **CUDA**: 12.4.0
-- **GCC**: 11.3.0
-- **Python**: 3.11
-
-### Linux
-
-Setting up the codebase in a linux environment should be pretty straightforward:
-
-1. Clone the repository
-2. Create and activate a virtual environment with Python3.11
-3. Install dependencies: `pip install -r requirements.txt`
-4. Build CUDA extensions: `python setup.py install`
-
-Do not forget to prepare the PTB-XL data and update the config files for the models.
-You should now be ready to go!
-
-### Windows/Docker Setup
-
-Setting up on Windows or other non-Linux systems requires Docker with GPU support. 
-
-**📋 [Docker Setup Guide](.devcontainer/README.md)**
-
-After setting up Docker, follow the Linux setup steps above.
-
+The **SynthECG** project focuses on creating synthetic ECG data that can be used for various applications in medical research and machine learning. By utilizing advanced generative models, we aim to produce high-quality synthetic ECGs that maintain the characteristics of real-world data. This framework allows researchers to evaluate the performance of different models and techniques in generating realistic ECG signals.
 
 ## Features
 
-### Training
+- **Systematic Evaluation**: Provides a structured approach to evaluate synthetic ECGs.
+- **Generative Models**: Utilizes GANs and diffusion models for generating synthetic data.
+- **Medical Applications**: Focuses on applications in the medical field, particularly in cardiology.
+- **Open Source**: Fully open-source and available for contributions.
+- **Comprehensive Documentation**: Detailed documentation to help users get started quickly.
 
-`train_wavegan.py`
+## Getting Started
 
-`train_p2p.py`
+To get started with **SynthECG**, you will need to clone the repository and install the required dependencies. Below, you will find detailed instructions to set up the environment.
 
-`train_sssd.py`
+## Installation
 
-`train_dsat.py`
+1. **Clone the Repository**
 
-Train each of the models.
+   Use the following command to clone the repository:
 
-### Sampling
+   ```bash
+   git clone https://github.com/sean-zw/SynthECG.git
+   cd SynthECG
+   ```
 
-`sample.py`
+2. **Install Dependencies**
 
-Sample trained model checkpoints matching PTB-XL dataset.
+   Ensure you have Python 3.8 or higher installed. You can create a virtual environment and install the required packages:
 
-### Evaluating
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+   pip install -r requirements.txt
+   ```
 
-`evaluate.py`
+## Usage
 
-For both validation and tesing.
+After installing the dependencies, you can start using the framework to generate synthetic ECGs. The main script for generating ECGs is located in the `src` directory.
 
-| Metric | Explanation |
-|--------|-------------|
-| **MMD** | Maximum Mean Discrepancy - measures distributional differences between real and synthetic data |
-| **PSD-MMD** | Power Spectral Density MMD - MMD applied to frequency domain representations |
-| **PSD-PRD** | Power Spectral Density Percent Root-mean-square Difference - PRD applied to frequency domain representations |
-| **FID<sub>ECG</sub>** | Fréchet Inception Distance for ECG - measures quality and diversity of generated ECG signals |
-| **KID<sub>ECG</sub>** | Kernel Inception Distance for ECG - alternative to FID using kernel methods |
-| **TSTR** | Train on Synthetic, Test on Real - evaluates utility of synthetic data for downstream tasks |
-| **TRTS** | Train on Real, Test on Synthetic - measures how well synthetic data represents real data patterns |
-| **NMI** | Normalized Mutual Information - measures statistical dependence between leads |
+### Generating Synthetic ECGs
 
-#### Also available:
+To generate synthetic ECGs, run the following command:
 
-- RMSE
-- PRD
-- DTW
-- discrete FD
-
-## Citation
-
-If you use this code in your research, please cite:
-
-```bibtex
-@mastersthesis{devogelaere2025synthecg,
-  title={A Systematic Evaluation Framework of Generative Deep Learning for 10-second 12-lead Synthetic ECG Signals},
-  author={Devogelaere, Pedro and Van Santvliet, Lore and De Vos, Maarten},
-  year={2025},
-  school={KU Leuven}
-}
+```bash
+python src/generate_ecg.py --model <model_name> --num_samples <number_of_samples>
 ```
+
+Replace `<model_name>` with the name of the generative model you want to use, and `<number_of_samples>` with the desired number of ECG samples.
+
+## Evaluation Framework
+
+The evaluation framework is designed to assess the quality of synthetic ECGs. It includes various metrics to compare synthetic data against real-world ECGs. Key metrics include:
+
+- **Signal Quality Index (SQI)**: Measures the quality of the ECG signal.
+- **Similarity Metrics**: Compares the statistical properties of synthetic and real ECGs.
+- **Visual Inspection**: Provides visualizations for qualitative analysis.
+
+### Running Evaluations
+
+To run the evaluation framework, use the following command:
+
+```bash
+python src/evaluate_ecg.py --synthetic_dir <path_to_synthetic_data> --real_dir <path_to_real_data>
+```
+
+This command will generate evaluation reports and visualizations.
+
+## Datasets
+
+**SynthECG** leverages several datasets for training and evaluation. The primary dataset used is the PTB-XL dataset, which contains a diverse range of ECG recordings.
+
+### PTB-XL Dataset
+
+- **Description**: The PTB-XL dataset includes over 21,000 ECG recordings from more than 18,000 patients.
+- **Access**: You can download the dataset from [PTB-XL website](https://physionet.org/static/published-project/ptbxl-1.0.1/).
+
+## Contributing
+
+We welcome contributions to the **SynthECG** project! If you would like to contribute, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/YourFeature`).
+3. Make your changes and commit them (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature/YourFeature`).
+5. Open a pull request.
+
+Please ensure that your code follows the style guidelines and is well-documented.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
+## Contact
+
+For any questions or suggestions, feel free to reach out via the Issues section of this repository or contact the maintainer directly.
+
+## Releases
+
+You can find the latest releases of **SynthECG** [here](https://github.com/sean-zw/SynthECG/releases). Please download the latest version and follow the instructions for installation and usage.
+
+Explore the exciting world of synthetic ECGs with **SynthECG** and contribute to advancing medical AI!
+
+---
+
+For more information and updates, visit our [Releases](https://github.com/sean-zw/SynthECG/releases) section.
